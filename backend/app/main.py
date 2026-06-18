@@ -16,14 +16,19 @@ from app.models.insights import MonthlySummary, FinancialHealthScore, Transactio
 
 app = FastAPI()
 
+import os
+
 origins = [
     "http://localhost:5173",
 ]
 
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    origins.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_origin_regex="https://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
