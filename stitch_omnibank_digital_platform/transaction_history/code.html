@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus Bank - Transaction History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "outline": "#737687",
+                "on-secondary-fixed-variant": "#314865",
+                "on-tertiary-container": "#ccffe2",
+                "background": "#f8f9ff",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-background": "#0b1c30",
+                "on-primary-container": "#f1f2ff",
+                "outline-variant": "#c2c6d9",
+                "primary": "#004bca",
+                "tertiary": "#006443",
+                "on-primary-fixed": "#00174b",
+                "inverse-primary": "#b4c5ff",
+                "on-tertiary-fixed": "#002113",
+                "secondary-fixed": "#d2e4ff",
+                "surface-variant": "#d3e4fe",
+                "surface-bright": "#f8f9ff",
+                "on-error-container": "#93000a",
+                "surface-container": "#e5eeff",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-primary": "#ffffff",
+                "surface-tint": "#0052dc",
+                "surface": "#f8f9ff",
+                "primary-fixed": "#dbe1ff",
+                "on-secondary-fixed": "#001c37",
+                "inverse-surface": "#213145",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed-variant": "#003ea8",
+                "secondary-fixed-dim": "#b0c8eb",
+                "tertiary-fixed": "#6ffbbe",
+                "tertiary-container": "#007f57",
+                "surface-container-low": "#eff4ff",
+                "on-secondary-container": "#49617f",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#d3e4fe",
+                "surface-container-high": "#dce9ff",
+                "on-tertiary-fixed-variant": "#005236",
+                "tertiary-fixed-dim": "#4edea3",
+                "surface-dim": "#cbdbf5",
+                "secondary-container": "#c4dcff",
+                "primary-container": "#0061ff",
+                "on-tertiary": "#ffffff",
+                "secondary": "#49607e",
+                "on-surface": "#0b1c30",
+                "inverse-on-surface": "#eaf1ff",
+                "error": "#ba1a1a",
+                "on-surface-variant": "#424656"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "xl": "80px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "base": "8px",
+                "sm": "12px",
+                "margin-desktop": "32px",
+                "lg": "48px",
+                "margin-mobile": "16px",
+                "xs": "4px",
+                "md": "24px"
+              },
+              "fontFamily": {
+                "numeric-data": ["Inter"],
+                "label-lg": ["Inter"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "display-lg-mobile": ["Plus Jakarta Sans"],
+                "display-lg": ["Plus Jakarta Sans"],
+                "body-sm": ["Inter"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg-mobile": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"]
+              },
+              "fontSize": {
+                "numeric-data": ["20px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .table-row-hover:hover {
+            background-color: rgba(0, 75, 202, 0.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c6d9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- SideNavBar (Authority: JSON) -->
+<nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline/20 bg-surface-container-low w-64 z-40 transition-all">
+<div class="p-md flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary">Nexus Bank</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Secure Banking</p>
+</div>
+</div>
+<div class="flex-grow py-md space-y-1">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-label-lg text-label-lg">Deposit</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">account_balance_wallet</span>
+<span class="font-label-lg text-label-lg">Withdraw</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">swap_horiz</span>
+<span class="font-label-lg text-label-lg">Transfer</span>
+</a>
+<!-- ACTIVE STATE LOGIC: This is the Transaction History page -->
+<a class="flex items-center bg-primary-container text-on-primary-container font-bold rounded-lg px-4 py-3 mx-2 scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-lg text-label-lg">Transactions</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">person</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</div>
+<div class="border-t border-outline-variant/30 py-md space-y-1">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+<span class="font-label-lg text-label-lg">Support</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+<div class="px-6 pt-md">
+<button class="w-full py-2 px-4 rounded-lg border border-error text-error font-label-lg hover:bg-error-container/20 transition-colors">Logout</button>
+</div>
+</div>
+</nav>
+<!-- TopNavBar (Authority: JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface shadow-sm lg:pl-64 h-20">
+<div class="flex justify-between items-center px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<button class="lg:hidden p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex gap-md">
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Features</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Testimonials</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-low border-none rounded-full px-5 py-2 text-body-sm w-64 focus:ring-2 focus:ring-primary focus:bg-surface transition-all" placeholder="Search transactions..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2 text-outline text-[20px]">search</span>
+</div>
+<button class="p-2 text-on-surface-variant relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<div class="w-10 h-10 rounded-full bg-secondary-container overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a smiling executive-level professional with a neutral background, capturing a sense of reliability and confidence. The lighting is soft and corporate, perfectly matching the minimalist and premium Nexus Bank design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr_iXqtpRlzVTQthMGCmZ4H4CZWDhDp_URgjiwk3U3lQLDmeQ9gNIG8yuz0i-LkwRJdBzTB2xYMoUsz-xZASOQaBoRfMyVlGtSxv38q9BLHu3zEEOnc02NanNXGhKEqER4dCXrUgtheSvbB8VDP-d5wwpLUqDcC3dFcAbAi11y3RNyk0fTLsDde27fzzo-7i51eLSpaWMyvhIxj72v4_i0VQ2x2L92lL_Cl2izfD2iU7WEPZr0Gnomr3qIQxI1lMLMV_AMQlTZjrgi"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas Content -->
+<main class="pt-24 pb-xl lg:pl-64 min-h-screen px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-background mb-2">Transaction History</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage and review your complete financial activity.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-2 px-md py-2 border border-outline-variant rounded-lg font-label-lg text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span> Export PDF
+                </button>
+<button class="flex items-center gap-2 px-md py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span> New Transaction
+                </button>
+</div>
+</div>
+<!-- Filters Section: Bento Grid Style -->
+<section class="mb-md grid grid-cols-1 lg:grid-cols-4 gap-md">
+<!-- Search & Filters Container -->
+<div class="lg:col-span-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-[0px_4px_12px_rgba(10,37,64,0.05)]">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md items-end">
+<!-- Date Range -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Start Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-body-sm focus:ring-2 focus:ring-primary" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">End Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-body-sm focus:ring-2 focus:ring-primary" type="date"/>
+</div>
+<!-- Type Filter -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Transaction Type</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg p-3 text-body-sm focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+<option>All Transactions</option>
+<option>Deposit</option>
+<option>Withdraw</option>
+<option>Transfer</option>
+<option>Payments</option>
+</select>
+</div>
+<!-- Search Input -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Search</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 pr-10 text-body-sm focus:ring-2 focus:ring-primary" placeholder="Merchant or ID..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-[20px]">search</span>
+</div>
+</div>
+</div>
+<!-- Active Filters Chips -->
+<div class="mt-md flex flex-wrap gap-sm pt-4 border-t border-outline-variant/10">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-label-md flex items-center gap-1">
+                        Status: Completed <button class="hover:text-error transition-colors"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-label-md flex items-center gap-1">
+                        Last 30 Days <button class="hover:text-error transition-colors"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="text-primary font-label-md hover:underline transition-all">Clear all filters</button>
+</div>
+</div>
+</section>
+<!-- Transaction Table Section -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(10,37,64,0.05)]">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50 border-b border-outline-variant/20">
+<th class="px-md py-4 font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Date</th>
+<th class="px-md py-4 font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Description</th>
+<th class="px-md py-4 font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Type</th>
+<th class="px-md py-4 font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Status</th>
+<th class="px-md py-4 font-label-lg text-label-lg text-on-surface uppercase tracking-wider text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-md py-5">
+<p class="font-body-md text-on-background">Oct 24, 2024</p>
+<p class="text-label-md text-on-surface-variant">14:32 PM</p>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div>
+<p class="font-body-md text-on-background font-semibold">Apple Store Fifth Ave</p>
+<p class="text-label-md text-on-surface-variant">Electronics • Ref: #82910</p>
+</div>
+</div>
+</td>
+<td class="px-md py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-md">Payment</span>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-md text-on-surface">Completed</span>
+</div>
+</td>
+<td class="px-md py-5 text-right">
+<span class="font-numeric-data text-numeric-data text-error">-$1,249.00</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-md py-5">
+<p class="font-body-md text-on-background">Oct 23, 2024</p>
+<p class="text-label-md text-on-surface-variant">09:15 AM</p>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">work</span>
+</div>
+<div>
+<p class="font-body-md text-on-background font-semibold">Monthly Salary - TechCorp</p>
+<p class="text-label-md text-on-surface-variant">Income • Ref: #PAY-002</p>
+</div>
+</div>
+</td>
+<td class="px-md py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-label-md">Deposit</span>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-md text-on-surface">Completed</span>
+</div>
+</td>
+<td class="px-md py-5 text-right">
+<span class="font-numeric-data text-numeric-data text-tertiary">+$8,500.00</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-md py-5">
+<p class="font-body-md text-on-background">Oct 22, 2024</p>
+<p class="text-label-md text-on-surface-variant">18:45 PM</p>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<p class="font-body-md text-on-background font-semibold">Le Bernardin Dinner</p>
+<p class="text-label-md text-on-surface-variant">Dining • Ref: #77312</p>
+</div>
+</div>
+</td>
+<td class="px-md py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-md">Payment</span>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline animate-pulse"></span>
+<span class="font-label-md text-on-surface">Pending</span>
+</div>
+</td>
+<td class="px-md py-5 text-right">
+<span class="font-numeric-data text-numeric-data text-error">-$450.20</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-md py-5">
+<p class="font-body-md text-on-background">Oct 21, 2024</p>
+<p class="text-label-md text-on-surface-variant">11:20 AM</p>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div>
+<p class="font-body-md text-on-background font-semibold">Amazon Prime Global</p>
+<p class="text-label-md text-on-surface-variant">Shopping • Ref: #AMZ-99</p>
+</div>
+</div>
+</td>
+<td class="px-md py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-md">Withdraw</span>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-md text-on-surface">Failed</span>
+</div>
+</td>
+<td class="px-md py-5 text-right">
+<span class="font-numeric-data text-numeric-data text-on-surface-variant line-through">-$29.99</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-md py-5">
+<p class="font-body-md text-on-background">Oct 20, 2024</p>
+<p class="text-label-md text-on-surface-variant">15:00 PM</p>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<p class="font-body-md text-on-background font-semibold">Transfer to Savings</p>
+<p class="text-label-md text-on-surface-variant">Internal • Ref: #XFER-91</p>
+</div>
+</div>
+</td>
+<td class="px-md py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-md">Transfer</span>
+</td>
+<td class="px-md py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-md text-on-surface">Completed</span>
+</div>
+</td>
+<td class="px-md py-5 text-right">
+<span class="font-numeric-data text-numeric-data text-error">-$2,000.00</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Controls -->
+<div class="px-md py-md flex flex-col md:flex-row items-center justify-between gap-md border-t border-outline-variant/10">
+<p class="font-body-sm text-on-surface-variant">Showing <span class="font-bold text-on-background">1-10</span> of <span class="font-bold text-on-background">245</span> transactions</p>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-outline-variant/30 rounded-lg hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg font-label-lg shadow-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded-lg font-label-lg text-on-surface-variant transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded-lg font-label-lg text-on-surface-variant transition-colors">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded-lg font-label-lg text-on-surface-variant transition-colors">25</button>
+<button class="p-2 border border-outline-variant/30 rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Stats Bento Grid (Secondary Information) -->
+<section class="mt-lg grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-md rounded-xl shadow-[0px_4px_12px_rgba(10,37,64,0.05)]">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Monthly Spending</p>
+<h3 class="font-display-lg text-[32px] text-on-background font-bold">$12,450.80</h3>
+<div class="mt-2 flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+<span class="font-label-md">12% from last month</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-md rounded-xl shadow-[0px_4px_12px_rgba(10,37,64,0.05)]">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Total Savings</p>
+<h3 class="font-display-lg text-[32px] text-on-background font-bold">$84,200.00</h3>
+<div class="mt-2 flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="font-label-md">4.5% Annual Interest</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-md rounded-xl shadow-[0px_4px_12px_rgba(10,37,64,0.05)]">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Points Earned</p>
+<h3 class="font-display-lg text-[32px] text-on-background font-bold">12,540</h3>
+<div class="mt-2 flex items-center gap-1 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+<span class="font-label-md">Platinum Status</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Authority: JSON) -->
+<footer class="w-full bg-surface-container-lowest lg:pl-64 py-md border-t border-outline-variant/20">
+<div class="px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Nexus Bank. All rights reserved.</p>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security Disclosure</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Layer -->
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('tr.table-row-hover').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('scale-[0.995]');
+                setTimeout(() => row.classList.remove('scale-[0.995]'), 150);
+            });
+        });
+
+        // Simple Mobile Menu Toggle Simulation
+        const mobileMenuBtn = document.querySelector('.lg\\:hidden');
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                alert('Mobile Navigation Drawer: Integration would expand here for Nexus Bank mobile users.');
+            });
+        }
+    </script>
+</body></html>

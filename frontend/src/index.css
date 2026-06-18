@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-tint: #0052dc;
+  --color-surface-container-highest: #d3e4fe;
+  --color-primary-fixed-dim: #b4c5ff;
+  --color-on-secondary-fixed: #001c37;
+  --color-on-secondary: #ffffff;
+  --color-on-primary-fixed-variant: #003ea8;
+  --color-on-tertiary-container: #ccffe2;
+  --color-tertiary: #006443;
+  --color-primary-fixed: #dbe1ff;
+  --color-inverse-surface: #213145;
+  --color-on-background: #0b1c30;
+  --color-on-primary-container: #f1f2ff;
+  --color-surface-dim: #cbdbf5;
+  --color-tertiary-container: #007f57;
+  --color-on-error: #ffffff;
+  --color-inverse-primary: #b4c5ff;
+  --color-error: #ba1a1a;
+  --color-surface-container: #e5eeff;
+  --color-on-tertiary: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed: #00174b;
+  --color-surface-container-low: #eff4ff;
+  --color-surface-container-high: #dce9ff;
+  --color-background: #f8f9ff;
+  --color-on-tertiary-fixed: #002113;
+  --color-on-tertiary-fixed-variant: #005236;
+  --color-secondary-container: #c4dcff;
+  --color-inverse-on-surface: #eaf1ff;
+  --color-on-primary: #ffffff;
+  --color-tertiary-fixed-dim: #4edea3;
+  --color-surface-bright: #f8f9ff;
+  --color-secondary-fixed: #d2e4ff;
+  --color-surface: #f8f9ff;
+  --color-on-surface: #0b1c30;
+  --color-on-surface-variant: #424656;
+  --color-secondary-fixed-dim: #b0c8eb;
+  --color-tertiary-fixed: #6ffbbe;
+  --color-on-secondary-fixed-variant: #314865;
+  --color-on-secondary-container: #49617f;
+  --color-primary: #004bca;
+  --color-outline-variant: #c2c6d9;
+  --color-outline: #737687;
+  --color-on-error-container: #93000a;
+  --color-secondary: #49607e;
+  --color-surface-variant: #d3e4fe;
+  --color-primary-container: #0061ff;
+
+  --spacing-margin-desktop: 32px;
+  --spacing-xl: 80px;
+  --spacing-container-max: 1280px;
+  --spacing-margin-mobile: 16px;
+  --spacing-gutter: 24px;
+  --spacing-base: 8px;
+  --spacing-xs: 4px;
+  --spacing-lg: 48px;
+  --spacing-sm: 12px;
+  --spacing-md: 24px;
+
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --font-headline-md: "Plus Jakarta Sans", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-label-lg: "Inter", sans-serif;
+  --font-headline-lg-mobile: "Plus Jakarta Sans", sans-serif;
+  --font-display-lg-mobile: "Plus Jakarta Sans", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-numeric-data: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-display-lg: "Plus Jakarta Sans", sans-serif;
+  --font-label-md: "Inter", sans-serif;
+}
+
+@layer utilities {
+  .text-headline-md {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+  .text-body-lg {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+  .text-label-lg {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+  }
+  .text-headline-lg-mobile {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+  .text-display-lg-mobile {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .text-body-md {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .text-headline-lg {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+  .text-numeric-data {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+  .text-body-sm {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+  .text-display-lg {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .text-label-md {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+}

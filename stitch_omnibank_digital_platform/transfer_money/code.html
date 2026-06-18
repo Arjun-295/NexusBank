@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transfer Money - Nexus Bank</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#c4dcff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-tint": "#0052dc",
+                        "surface-container-high": "#dce9ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#314865",
+                        "surface": "#f8f9ff",
+                        "outline": "#737687",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-container": "#0061ff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#d2e4ff",
+                        "inverse-primary": "#b4c5ff",
+                        "primary": "#004bca",
+                        "outline-variant": "#c2c6d9",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-container": "#ccffe2",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-fixed-dim": "#b0c8eb",
+                        "on-background": "#0b1c30",
+                        "on-surface-variant": "#424656",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#f1f2ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "background": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-primary-fixed": "#00174b",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary": "#49607e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary": "#006443",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#001c37",
+                        "inverse-surface": "#213145",
+                        "on-secondary-container": "#49617f",
+                        "tertiary-container": "#007f57",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#dbe1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "numeric-data": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "numeric-data": ["20px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 border-r border-outline-variant/20 bg-surface-container-low w-64 z-50">
+<div class="p-md flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary">Nexus Bank</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Secure Banking</p>
+</div>
+</div>
+<nav class="flex-1 mt-lg space-y-1">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-label-lg text-label-lg">Deposit</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">account_balance_wallet</span>
+<span class="font-label-lg text-label-lg">Withdraw</span>
+</a>
+<a class="flex items-center bg-primary-container text-on-primary-container font-bold rounded-lg px-4 py-3 mx-2 scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined mr-3">swap_horiz</span>
+<span class="font-label-lg text-label-lg">Transfer</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">receipt_long</span>
+<span class="font-label-lg text-label-lg">Transactions</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">person</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant/10 p-sm space-y-1">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+<span class="font-label-lg text-label-lg">Support</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+<button class="w-full mt-2 flex items-center justify-center bg-surface-container-highest text-error font-bold rounded-lg py-3 hover:bg-error/5 transition-colors">
+<span class="font-label-lg text-label-lg">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 min-h-screen px-margin-mobile md:px-margin-desktop pt-8 pb-xl max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Transfer Money</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Move your funds securely across accounts or to third-party beneficiaries.</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter">
+<!-- Transfer Stepper & Form -->
+<div class="xl:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(10,37,64,0.05)] border border-outline-variant/20 p-md md:p-lg">
+<!-- Stepper Indicator -->
+<div class="flex items-center justify-between mb-lg max-w-2xl mx-auto overflow-hidden">
+<div class="flex flex-col items-center gap-2 group cursor-pointer" onclick="goToStep(1)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold transition-colors" id="step-1-circle">1</div>
+<span class="font-label-md text-label-md text-primary">Source</span>
+</div>
+<div class="flex-1 h-[2px] bg-outline-variant/30 mx-4 -mt-6">
+<div class="h-full bg-primary w-0 transition-all duration-500" id="line-1"></div>
+</div>
+<div class="flex flex-col items-center gap-2" onclick="goToStep(2)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant font-bold transition-colors" id="step-2-circle">2</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Beneficiary</span>
+</div>
+<div class="flex-1 h-[2px] bg-outline-variant/30 mx-4 -mt-6">
+<div class="h-full bg-primary w-0 transition-all duration-500" id="line-2"></div>
+</div>
+<div class="flex flex-col items-center gap-2" onclick="goToStep(3)">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant font-bold transition-colors" id="step-3-circle">3</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Amount</span>
+</div>
+<div class="flex-1 h-[2px] bg-outline-variant/30 mx-4 -mt-6">
+<div class="h-full bg-primary w-0 transition-all duration-500" id="line-3"></div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant font-bold transition-colors" id="step-4-circle">4</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Verify</span>
+</div>
+</div>
+<!-- Step Content Containers -->
+<div class="relative overflow-hidden min-h-[400px]">
+<!-- Step 1: Source Account -->
+<div class="step-transition opacity-100 translate-x-0" id="step-1">
+<h3 class="font-headline-md text-headline-md mb-md">Select Source Account</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<label class="relative block cursor-pointer group">
+<input checked="" class="peer sr-only" name="source_account" type="radio"/>
+<div class="p-md rounded-xl border-2 border-outline-variant/30 peer-checked:border-primary peer-checked:bg-primary/5 transition-all group-hover:bg-surface-container-low">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Primary Savings</span>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100">check_circle</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface mb-xs">$42,850.20</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">**** 8829</p>
+</div>
+</label>
+<label class="relative block cursor-pointer group">
+<input class="peer sr-only" name="source_account" type="radio"/>
+<div class="p-md rounded-xl border-2 border-outline-variant/30 peer-checked:border-primary peer-checked:bg-primary/5 transition-all group-hover:bg-surface-container-low">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Investments</span>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100">check_circle</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface mb-xs">$12,400.00</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">**** 4431</p>
+</div>
+</label>
+</div>
+<div class="mt-lg flex justify-end">
+<button class="px-lg py-3 bg-primary text-on-primary rounded-lg font-bold hover:scale-[0.98] transition-transform flex items-center gap-2" onclick="nextStep(2)">
+                                    Continue <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Beneficiary Details -->
+<div class="step-transition hidden opacity-0 translate-x-20" id="step-2">
+<h3 class="font-headline-md text-headline-md mb-md">Beneficiary Details</h3>
+<div class="space-y-md max-w-lg">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Account Number</label>
+<input class="w-full bg-surface-container-low border-0 rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-shadow" placeholder="Enter 10-digit account number" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Beneficiary Name</label>
+<input class="w-full bg-surface-container-low border-0 rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-shadow" placeholder="Full name as per bank records" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Bank Name</label>
+<select class="w-full bg-surface-container-low border-0 rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-shadow appearance-none">
+<option>Select Bank</option>
+<option>Nexus Reserve Bank</option>
+<option>Global Equity Trust</option>
+<option>Apex Commercial</option>
+</select>
+</div>
+</div>
+<div class="mt-lg flex justify-between">
+<button class="px-lg py-3 border border-outline-variant text-secondary rounded-lg font-bold hover:bg-surface-container-high transition-colors" onclick="prevStep(1)">Back</button>
+<button class="px-lg py-3 bg-primary text-on-primary rounded-lg font-bold hover:scale-[0.98] transition-transform flex items-center gap-2" onclick="nextStep(3)">
+                                    Continue <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Amount -->
+<div class="step-transition hidden opacity-0 translate-x-20" id="step-3">
+<h3 class="font-headline-md text-headline-md mb-md">Enter Amount</h3>
+<div class="max-w-lg mx-auto text-center py-lg">
+<div class="relative inline-block w-full">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-display-lg text-display-lg text-primary">$</span>
+<input class="w-full text-center py-8 font-display-lg text-display-lg text-on-surface bg-transparent border-b-2 border-outline-variant focus:border-primary focus:ring-0 outline-none transition-colors" step="0.01" type="number" value="1000.00"/>
+</div>
+<p class="mt-md font-body-sm text-body-sm text-on-surface-variant">Daily limit remaining: $45,000.00</p>
+<div class="mt-md flex flex-wrap justify-center gap-sm">
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors">+$100</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors">+$500</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors">+$1,000</button>
+</div>
+</div>
+<div class="mt-lg flex justify-between">
+<button class="px-lg py-3 border border-outline-variant text-secondary rounded-lg font-bold hover:bg-surface-container-high transition-colors" onclick="prevStep(2)">Back</button>
+<button class="px-lg py-3 bg-primary text-on-primary rounded-lg font-bold hover:scale-[0.98] transition-transform flex items-center gap-2" onclick="nextStep(4)">
+                                    Final Review <span class="material-symbols-outlined">verified_user</span>
+</button>
+</div>
+</div>
+<!-- Step 4: Verification -->
+<div class="step-transition hidden opacity-0 translate-x-20" id="step-4">
+<div class="text-center max-w-md mx-auto">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Secure Verification</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Please enter your 6-digit transaction PIN to authorize this transfer of <span class="font-bold text-on-surface">$1,000.00</span>.</p>
+<div class="flex justify-center gap-sm mb-lg">
+<input class="w-12 h-16 text-center text-headline-md border-0 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary/30 outline-none" maxlength="1" type="password"/>
+<input class="w-12 h-16 text-center text-headline-md border-0 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary/30 outline-none" maxlength="1" type="password"/>
+<input class="w-12 h-16 text-center text-headline-md border-0 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary/30 outline-none" maxlength="1" type="password"/>
+<input class="w-12 h-16 text-center text-headline-md border-0 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary/30 outline-none" maxlength="1" type="password"/>
+<input class="w-12 h-16 text-center text-headline-md border-0 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary/30 outline-none" maxlength="1" type="password"/>
+<input class="w-12 h-16 text-center text-headline-md border-0 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary/30 outline-none" maxlength="1" type="password"/>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" onclick="completeTransfer()">
+                                    Confirm Transfer
+                                </button>
+<button class="mt-md text-on-surface-variant hover:text-primary transition-colors font-label-lg" onclick="prevStep(3)">Cancel Transaction</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Bento Column -->
+<div class="xl:col-span-4 space-y-gutter">
+<!-- Frequent Beneficiaries -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/20 p-md">
+<div class="flex items-center justify-between mb-md">
+<h4 class="font-headline-md text-label-lg text-on-surface uppercase tracking-tight">Quick Transfer</h4>
+<button class="text-primary font-label-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-sm">
+<button class="group p-3 rounded-xl border border-outline-variant/10 hover:border-primary hover:bg-primary/5 transition-all text-center" onclick="quickSelect('Elena Vance', '**** 4410')">
+<img alt="Elena Vance" class="w-12 h-12 rounded-full mx-auto mb-2 border-2 border-surface shadow-sm" data-alt="A professional studio portrait of a woman with a friendly smile, clean high-key lighting, and a soft minimalist background. The style is consistent with a modern executive fintech platform, using a refined and bright aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgAUujFG8puNKaIgYMBUp6SNCyQ-huZD1a0Z81p7atMjk84EhxwPCs9LgegPETHT_Q8KAA94aw6NQXPB5-QFwMo7gxR9Xo1nOpCCTxXGRJFxZdfcOWSq2CYYwQtlt1voGbhNPECVAKVxFtBMNvTR3fgfUtRqRhtjtNYtBl8hvGP4ybUb-BhN2kM9jm4qKWOjSvu2aH3Ot5YR8-4qeuUrxeJZUHSAzDzzplcIsoeAWlgv-xob8GcJzc6Z3G3_f5r4lzYmUBzneuMcND"/>
+<p class="font-label-lg text-label-lg text-on-surface truncate">Elena Vance</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Savings</p>
+</button>
+<button class="group p-3 rounded-xl border border-outline-variant/10 hover:border-primary hover:bg-primary/5 transition-all text-center" onclick="quickSelect('Marcus Thorne', '**** 2201')">
+<img alt="Marcus Thorne" class="w-12 h-12 rounded-full mx-auto mb-2 border-2 border-surface shadow-sm" data-alt="A professional studio portrait of a man in business attire, clean and bright lighting with a soft bokeh background. The aesthetic is corporate and reliable, adhering to a high-end financial services visual language with cool tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxBYxstn24sjZhi8QEaYvYMFs_pntztBBabg_hFrIofJNUf3l9Uu5urTIAfU2WdOOJdzwvNkq45jpsKddzpwuQmSASphRWA7UiS_tIwJNgYtBgIkC18L6xHcRAJYfGWNzyAUuN_VGDxaeLTU7CinAgMkVqG3xq48wUTK48Jej4w2K6SEtgRFuspcbsywstH2uMkRXvijz3YNaAey3x8UUG4T9QRMhNrYRJJUXLJCop9eDTKcTwvYwdT6jn3OsbjPgIWMgIFaP1-4vJ"/>
+<p class="font-label-lg text-label-lg text-on-surface truncate">Marcus Thorne</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Joint Account</p>
+</button>
+<button class="group p-3 rounded-xl border border-outline-variant/10 hover:border-primary hover:bg-primary/5 transition-all text-center" onclick="quickSelect('Sarah Jenkins', '**** 9982')">
+<img alt="Sarah Jenkins" class="w-12 h-12 rounded-full mx-auto mb-2 border-2 border-surface shadow-sm" data-alt="A bright and airy professional portrait of a woman, featuring soft diffused lighting and a clean minimalist backdrop. The visual style is premium and corporate, perfectly suited for an executive fintech user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR5GQWOYkOP9RbUtwjHzzG1eraIsUBBGcMhH3o28Us9Y_PiAlcRTMrks0uKgLfjmcZePOeeT8KHLp0X7cm9e0b_w8htgGBEv-Aqx20VfygOpWFndVhgQ48pPr8qz3KY9DsqlydbTyDaQQ3MnxPtDT12QBppN3EWtlBv0i_rN1kaQMWzWK6hu-WQM8OjkSEbLvevZw00-napSEj7STKlUKRT5RHilPcOPAll3ESPKOp3EC3LLWNSsxv10x-6tEZqYUf9WWU7lYKQzM-"/>
+<p class="font-label-lg text-label-lg text-on-surface truncate">Sarah Jenkins</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Work</p>
+</button>
+<button class="p-3 rounded-xl border-2 border-dashed border-outline-variant/40 hover:border-primary hover:bg-primary/5 transition-all text-center flex flex-col items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary">add</span>
+</div>
+<p class="font-label-lg text-label-lg text-primary">New Payee</p>
+</button>
+</div>
+</section>
+<!-- Security Tip Card -->
+<div class="bg-primary rounded-xl p-md text-on-primary relative overflow-hidden group">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-on-primary/10 rounded-full group-hover:scale-125 transition-transform duration-700"></div>
+<div class="relative z-10">
+<span class="material-symbols-outlined mb-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<h4 class="font-headline-md text-label-lg uppercase mb-xs">Security Advisory</h4>
+<p class="font-body-sm text-body-sm opacity-90 mb-md">Never share your transaction PIN or OTP with anyone, even bank officials. Nexus Bank will never ask for your private credentials over phone or email.</p>
+<a class="font-label-md text-label-md underline hover:opacity-100 opacity-80" href="#">Security Protocol Guide</a>
+</div>
+</div>
+<!-- Recent Activity Mini-List -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/20 p-md">
+<h4 class="font-headline-md text-label-lg text-on-surface uppercase tracking-tight mb-md">Recent Transfers</h4>
+<div class="space-y-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call_made</span>
+</div>
+<div class="flex-1">
+<p class="font-label-lg text-label-lg text-on-surface">To Elena Vance</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Oct 24, 2024</p>
+</div>
+<p class="font-numeric-data text-label-lg text-on-surface">-$150.00</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call_made</span>
+</div>
+<div class="flex-1">
+<p class="font-label-lg text-label-lg text-on-surface">To Amazon Services</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Oct 22, 2024</p>
+</div>
+<p class="font-numeric-data text-label-lg text-on-surface">-$42.99</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="lg:ml-64 w-full py-md px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest border-t border-outline-variant/10">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Nexus Bank. All rights reserved.</p>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security Disclosure</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        let currentStep = 1;
+
+        function updateUI() {
+            // Update circles and lines
+            for (let i = 1; i <= 4; i++) {
+                const circle = document.getElementById(`step-${i}-circle`);
+                const line = document.getElementById(`line-${i-1}`);
+                
+                if (i < currentStep) {
+                    circle.classList.replace('bg-surface-container-high', 'bg-tertiary');
+                    circle.classList.replace('bg-primary', 'bg-tertiary');
+                    circle.classList.replace('text-on-surface-variant', 'text-on-tertiary');
+                    circle.classList.replace('text-on-primary', 'text-on-tertiary');
+                    circle.innerHTML = '<span class="material-symbols-outlined">check</span>';
+                    if (line) line.style.width = '100%';
+                } else if (i === currentStep) {
+                    circle.classList.remove('bg-surface-container-high', 'bg-tertiary');
+                    circle.classList.add('bg-primary');
+                    circle.classList.replace('text-on-surface-variant', 'text-on-primary');
+                    circle.classList.replace('text-on-tertiary', 'text-on-primary');
+                    circle.innerHTML = i;
+                    if (line) line.style.width = '0%';
+                } else {
+                    circle.classList.remove('bg-primary', 'bg-tertiary');
+                    circle.classList.add('bg-surface-container-high');
+                    circle.classList.replace('text-on-primary', 'text-on-surface-variant');
+                    circle.classList.replace('text-on-tertiary', 'text-on-surface-variant');
+                    circle.innerHTML = i;
+                    if (line) line.style.width = '0%';
+                }
+            }
+
+            // Show/Hide step content
+            document.querySelectorAll('.step-transition').forEach((step, idx) => {
+                if (idx + 1 === currentStep) {
+                    step.classList.remove('hidden');
+                    setTimeout(() => {
+                        step.classList.add('opacity-100', 'translate-x-0');
+                        step.classList.remove('opacity-0', 'translate-x-20');
+                    }, 50);
+                } else {
+                    step.classList.add('opacity-0', 'translate-x-20');
+                    step.classList.remove('opacity-100', 'translate-x-0');
+                    setTimeout(() => step.classList.add('hidden'), 400);
+                }
+            });
+        }
+
+        function nextStep(step) {
+            currentStep = step;
+            updateUI();
+        }
+
+        function prevStep(step) {
+            currentStep = step;
+            updateUI();
+        }
+
+        function goToStep(step) {
+            if (step < currentStep) {
+                currentStep = step;
+                updateUI();
+            }
+        }
+
+        function quickSelect(name, acct) {
+            // Automate jump to step 2 and fill (simulated)
+            currentStep = 2;
+            updateUI();
+            // In a real app we'd populate the inputs here
+        }
+
+        function completeTransfer() {
+            // Final interaction simulation
+            const btn = event.target;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.classList.replace('bg-primary', 'bg-tertiary');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Transfer Complete';
+                alert('Transfer initiated successfully! Your transaction reference is #NX' + Math.floor(Math.random()*1000000));
+            }, 2000);
+        }
+
+        // Auto-focus next input in PIN
+        document.querySelectorAll('#step-4 input').forEach((input, index, inputs) => {
+            input.addEventListener('keyup', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+        });
+    </script>
+</body></html>
